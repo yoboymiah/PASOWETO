@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "description": "PASOWETO Frontend - Build Fix v1",
+  "description": "PASOWETO Frontend - Fix JSON Parse Error",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
@@ -32,7 +32,6 @@
   },
   "browserslist": {
     "production": [
-      Track
       ">0.2%",
       "not dead",
       "not op_mini all"
@@ -44,7 +43,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "tailwindcss": "^3.4.1"
   }
 }
