@@ -9,7 +9,7 @@ const app = express()
 
 // ✅ FIX: Allow your React frontend (localhost:3000)
 app.use(cors({
-    origin: ['http://localhost:3000', process.env.FRONTEND_URL],
+    origin: ['https://pasoweto-backend.onrender.com', process.env.FRONTEND_URL],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
