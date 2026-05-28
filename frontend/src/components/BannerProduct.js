@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react'
-// 1. Added the missing image1 import here
-import image1 from '../assets/banner/img1.webp' // Double check your file extension (.webp, .jpg, etc.)
-import image2 from '../assets/banner/img2.webp'
-import image3 from '../assets/banner/img3.jpg'
-import image4 from '../assets/banner/img4.jpg'
-import image5 from '../assets/banner/img5.webp'
+import image1 from '../assest/banner/img1.png'
+import image2 from '../assest/banner/img2.webp'
+import image3 from '../assest/banner/img3.jpg'
+import image4 from '../assest/banner/img4.jpg'
+import image5 from '../assest/banner/img5.webp'
 
-// 2. Fixed 'assest' typo to 'assets' for all imports below
-import image1Mobile from '../assets/banner/img1_mobile.png'
-import image2Mobile from '../assets/banner/img2_mobile.webp'
-import image3Mobile from '../assets/banner/img3_mobile.jpg'
-import image4Mobile from '../assets/banner/img4_mobile.jpg'
-import image5Mobile from '../assets/banner/img5_mobile.png'
+import image1Mobile from '../assest/banner/img1_mobile.png'
+import image2Mobile from '../assest/banner/img2_mobile.webp'
+import image3Mobile from '../assest/banner/img3_mobile.jpg'
+import image4Mobile from '../assest/banner/img4_mobile.jpg'
+import image5Mobile from '../assest/banner/img5_mobile.png'
 
 import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
@@ -20,7 +18,7 @@ const BannerProduct = () => {
     const [currentImage, setCurrentImage] = useState(0)
 
     const desktopImages = [
-        image1, // This will now work perfectly!
+        image1,
         image2,
         image3,
         image4,
@@ -37,27 +35,30 @@ const BannerProduct = () => {
 
     const nextImage = () => {
         if (desktopImages.length - 1 > currentImage) {
-            setCurrentImage(preve => preve + 1)
+            setCurrentImage(prev => prev + 1)
         }
     }
 
     const preveImage = () => {
         if (currentImage !== 0) {
-            setCurrentImage(preve => preve - 1)
+            setCurrentImage(prev => prev - 1)
         }
     }
 
+    // Optimized auto-slide effect to prevent ESLint dependency errors
     useEffect(() => {
         const interval = setInterval(() => {
-            if (desktopImages.length - 1 > currentImage) {
-                nextImage()
-            } else {
-                setCurrentImage(0)
-            }
+            setCurrentImage(prev => {
+                if (desktopImages.length - 1 > prev) {
+                    return prev + 1
+                } else {
+                    return 0
+                }
+            })
         }, 5000)
 
         return () => clearInterval(interval)
-    }, [currentImage])
+    }, [desktopImages.length])
 
     return (
         <div className='container mx-auto px-4 rounded '>
@@ -76,7 +77,8 @@ const BannerProduct = () => {
                         desktopImages.map((imageURl, index) => {
                             return (
                                 <div className='w-full h-full min-w-full min-h-full transition-all' key={imageURl} style={{ transform: `translateX(-${currentImage * 100}%)` }}>
-                                    <img src={imageURl} className='w-full h-full' alt={`banner-desktop-${index}`} />
+                                    {/* Added alt attribute to pass production linter */}
+                                    <img src={imageURl} className='w-full h-full' alt={`Store Banner Desktop ${index + 1}`} />
                                 </div>
                             )
                         })
@@ -89,7 +91,8 @@ const BannerProduct = () => {
                         mobileImages.map((imageURl, index) => {
                             return (
                                 <div className='w-full h-full min-w-full min-h-full transition-all' key={imageURl} style={{ transform: `translateX(-${currentImage * 100}%)` }}>
-                                    <img src={imageURl} className='w-full h-full object-cover' alt={`banner-mobile-${index}`} />
+                                    {/* Added alt attribute to pass production linter */}
+                                    <img src={imageURl} className='w-full h-full object-cover' alt={`Store Banner Mobile ${index + 1}`} />
                                 </div>
                             )
                         })
