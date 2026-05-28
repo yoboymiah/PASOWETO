@@ -1,4 +1,4 @@
-const backendDomin = "https://pasoweto-backend.onrender.com"
+const backendDomin = 'https://pasoweto-backend.onrender.com'
 
 const SummaryApi = {
     signUP : {
