@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "description": "PASOWETO Frontend - Build Fix v1",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
