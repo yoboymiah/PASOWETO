@@ -7,11 +7,11 @@ const router = require('./routes')
 
 const app = express()
 
-// ✅ FIX: Allow your React frontend (localhost:3000)
+// ✅ FIX: Allow your React FRONTEND (not backend)
 app.use(cors({
-    origin: ['https://pasoweto-backend.onrender.com', process.env.FRONTEND_URL],
+    origin: ['https://pasoweto.onrender.com', 'http://localhost:3000', process.env.FRONTEND_URL],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }))
 
@@ -20,7 +20,7 @@ app.use(cookieParser())
 
 app.use("/api", router)
 
-const PORT = 8080 || process.env.PORT
+const PORT = process.env.PORT || 8080  // ✅ Also fix: PORT should be process.env.PORT first
 
 connectDB().then(() => {
     app.listen(PORT, () => {
